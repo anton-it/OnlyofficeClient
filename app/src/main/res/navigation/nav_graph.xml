@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logonFragment">
+
+    <fragment
+        android:id="@+id/documentsFragment"
+        android:name="com.example.onlyofficeclient.ui.documents.DocumentsFragment"
+        android:label="fragment_documents"
+        tools:layout="@layout/fragment_documents" />
+    <fragment
+        android:id="@+id/roomsFragment"
+        android:name="com.example.onlyofficeclient.ui.rooms.RoomsFragment"
+        android:label="fragment_rooms"
+        tools:layout="@layout/fragment_rooms" />
+    <fragment
+        android:id="@+id/trashFragment"
+        android:name="com.example.onlyofficeclient.ui.trash.TrashFragment"
+        android:label="fragment_trash"
+        tools:layout="@layout/fragment_trash" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.onlyofficeclient.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/logonFragment"
+        android:name="com.example.onlyofficeclient.ui.logon.LogonFragment"
+        android:label="fragment_logon"
+        tools:layout="@layout/fragment_logon" >
+        <action
+            android:id="@+id/action_logonFragment_to_documentsFragment"
+            app:destination="@id/documentsFragment" />
+        <argument
+            android:name="response"
+            app:argType="com.example.onlyofficeclient.models.response.auth.Response" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.onlyofficeclient.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+</navigation>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/documentsFragment"
+        android:title=""
+        android:icon="@drawable/ic_documents"/>
+
+    <item android:id="@+id/roomsFragment"
+        android:title=""
+        android:icon="@drawable/ic_rooms_trash"/>
+
+    <item android:id="@+id/trashFragment"
+        android:title=""
+        android:icon="@drawable/ic_rooms_trash"/>
+
+    <item android:id="@+id/profileFragment"
+        android:title=""
+        android:icon="@drawable/ic_profile"/>
+</menu>
