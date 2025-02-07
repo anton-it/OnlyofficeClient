@@ -9,7 +9,11 @@
         android:id="@+id/documentsFragment"
         android:name="com.example.onlyofficeclient.ui.documents.DocumentsFragment"
         android:label="fragment_documents"
-        tools:layout="@layout/fragment_documents" />
+        tools:layout="@layout/fragment_documents" >
+        <argument
+            android:name="authResponse"
+            app:argType="com.example.onlyofficeclient.models.response.auth.AuthResponse" />
+    </fragment>
     <fragment
         android:id="@+id/roomsFragment"
         android:name="com.example.onlyofficeclient.ui.rooms.RoomsFragment"
@@ -30,15 +34,14 @@
         android:name="com.example.onlyofficeclient.ui.logon.LogonFragment"
         android:label="fragment_logon"
         tools:layout="@layout/fragment_logon" >
+        <argument
+            android:name="authResponse"
+            app:argType="com.example.onlyofficeclient.models.response.auth.AuthResponse" />
         <action
             android:id="@+id/action_logonFragment_to_documentsFragment"
             app:destination="@id/documentsFragment" />
-        <argument
-            android:name="response"
-            app:argType="com.example.onlyofficeclient.models.response.auth.Response" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.onlyofficeclient.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+    <argument
+        android:name="authResponse"
+        app:argType="com.example.onlyofficeclient.models.response.auth.AuthResponse" />
 </navigation>

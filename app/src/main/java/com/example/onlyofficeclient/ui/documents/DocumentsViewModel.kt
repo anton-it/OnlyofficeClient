@@ -18,9 +18,9 @@ class DocumentsViewModel @Inject constructor(private val repository: AppReposito
     val authRequestLiveData: LiveData<AuthRequest>
         get() = _authRequestLiveData
 
-    fun getDocumentsSection() {
+    fun getDocumentsSection(token: String) {
         viewModelScope.launch {
-            repository.getDocumentsSection()
+            repository.getDocumentsSection(token = token)
 //            Log.d("MyLog1111", "DocumentsViewModel init")
 
 //                if (response.isSuccessful) {

@@ -20,7 +20,7 @@ class DocumentsFragment : Fragment() {
     private val binding: FragmentDocumentsBinding
         get() = _binding ?: throw RuntimeException("Document Fragment == null")
     private val viewModel by viewModels<DocumentsViewModel>()
-//    private val args by navArgs<Args>()
+    private val bundleArgs: DocumentsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +32,12 @@ class DocumentsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val authResponseToken = bundleArgs.authResponse.response.token
+        Log.d("MyLog111", "Document fragment launch $authResponseToken")
         binding.btnLoad.setOnClickListener {
-            viewModel.getDocumentsSection()
+            viewModel.getDocumentsSection(token = authResponseToken)
         }
-        Log.d("MyLog111", "Document fragment launch")
     }
 
     override fun onDestroy() {

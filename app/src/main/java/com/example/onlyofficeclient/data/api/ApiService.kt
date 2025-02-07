@@ -26,7 +26,7 @@ interface ApiService {
 
     @GET("/api/2.0/files/{id}")
     suspend fun documentsSection(
-//        @Header("Authorization") asc_auth_key: String,
+        @Header("Authorization") asc_auth_key: String,
         @Path("id") id: Int = 626570,
         @Query(QUERY_PARAM_COUNT) count: Int =100,
         @Query(QUERY_PARAM_SORT_BY) sortby: String = "DateAndTime",

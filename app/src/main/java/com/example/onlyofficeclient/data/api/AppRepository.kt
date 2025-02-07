@@ -9,5 +9,5 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
             authRequest = authRequest
     )
 
-    suspend fun getDocumentsSection() = apiService.documentsSection()
+    suspend fun getDocumentsSection(token: String) = apiService.documentsSection(asc_auth_key = token)
 }

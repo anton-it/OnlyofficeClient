@@ -1,7 +1,5 @@
 package com.example.onlyofficeclient.ui.logon
 
-import android.content.Intent
-import android.health.connect.datatypes.units.Length
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,10 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.onlyofficeclient.R
 import com.example.onlyofficeclient.databinding.FragmentLogonBinding
+import com.example.onlyofficeclient.models.response.auth.AuthResponse
 import com.example.onlyofficeclient.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -75,19 +75,24 @@ class LogonFragment : Fragment() {
         }
 
 
-        viewModel.authResponseLiveData.observe(viewLifecycleOwner) { response ->
-            Log.d("MyLog111", "viewModel.authResponseLiveData.observe")
-            when (response) {
+        viewModel.authResponseLiveData.observe(viewLifecycleOwner) { authResponse ->
+
+            when (authResponse) {
                 is Resource.Success -> {
-                    response.data?.let {
+                    authResponse.data?.let {
                         binding.pbLoad.visibility = View.INVISIBLE
-                        launchHomeFragment()
+                        val bundle = bundleOf("authResponse" to authResponse.data)
+                        launchDocumentsFragment(bundle)
                     }
                 }
 
                 is Resource.Error -> {
-                    response.message.let { errorMessage ->
-                        Toast.makeText(requireContext(), "Error: ${errorMessage}", Toast.LENGTH_SHORT).apply {
+                    authResponse.message.let { errorMessage ->
+                        Toast.makeText(
+                            requireContext(),
+                            "Error: ${errorMessage}",
+                            Toast.LENGTH_SHORT
+                        ).apply {
                             show()
                         }
                         binding.pbLoad.visibility = View.INVISIBLE
@@ -133,8 +138,11 @@ class LogonFragment : Fragment() {
         })
     }
 
-    private fun launchHomeFragment() {
-        findNavController().navigate(LogonFragmentDirections.actionLogonFragmentToDocumentsFragment())
+    private fun launchDocumentsFragment(bundle: Bundle) {
+        findNavController().navigate(
+            R.id.action_logonFragment_to_documentsFragment,
+            bundle
+        )
     }
 
     override fun onDestroy() {
